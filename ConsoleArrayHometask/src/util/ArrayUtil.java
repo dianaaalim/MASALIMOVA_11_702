@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayUtil {
-    public static int[] first(Scanner scanner, int[]array) {
+    public static int[] first(Scanner scanner, int[] array) {
         System.out.print("Введите кол-во элементов в массиве: ");
         int arraySize = scanner.nextInt();
-        if(arraySize > 0) {
+        if (arraySize > 0) {
             array = new int[arraySize];
             System.out.println("Массив создан");
         } else {
@@ -18,7 +18,7 @@ public class ArrayUtil {
 
     public static int[] second(Scanner scanner, int[] array) {
         boolean checker = true;
-        if(array != null) {
+        if (array != null) {
             System.out.println("Введите число: ");
             for (int i = 0; i < array.length; i++) {
                 if (array[i] == 0) {
@@ -27,7 +27,7 @@ public class ArrayUtil {
                     break;
                 }
             }
-            if(checker) {
+            if (checker) {
                 int[] newArray = new int[array.length + 1];
                 for (int i = 0; i < array.length; i++) {
                     newArray[i] = array[i];
@@ -36,51 +36,51 @@ public class ArrayUtil {
                 array = newArray;
             }
             System.out.println("Число успешно добавлено");
-        }else {
+        } else {
             System.out.println("Массив не создан!!!");
         }
         return array;
     }
 
     public static int[] third(Scanner scanner, int[] array) {
-        if(array != null) {
+        if (array != null) {
             System.out.print("Введите позицию: ");
             int index = scanner.nextInt();
-            if(index >= 0 && index <= array.length - 1) {
+            if (index >= 0 && index <= array.length - 1) {
                 for (int i = index; i < array.length - 1; i++) {
                     array[i] = array[i + 1];
                 }
-                array[array.length-1] = 0;
+                array[array.length - 1] = 0;
                 System.out.println("Число успешно удалено");
-            }else {
+            } else {
                 System.out.println("Неверная позиция в массиве!");
             }
-        }else {
+        } else {
             System.out.println("Массив не создан!!!");
         }
         return array;
     }
 
     public static int[] fourth(Scanner scanner, int[] array) {
-        if(array != null) {
+        if (array != null) {
             System.out.print("Введите позицию: ");
             int index = scanner.nextInt();
             int[] newArray;
-            if(index < 0) {
+            if (index < 0) {
                 System.out.println("Позиция меньше 0!");
                 return array;
             }
-            if(index > array.length) {
+            if (index > array.length) {
                 System.out.print("Введите число: ");
                 newArray = new int[index + 1];
-                for(int i = 0; i < array.length; i++) {
+                for (int i = 0; i < array.length; i++) {
                     newArray[i] = array[i];
                 }
                 newArray[index] = scanner.nextInt();
             } else {
                 System.out.print("Введите число: ");
                 newArray = new int[array.length + 1];
-                for (int i = 0; i < index ; i++) {
+                for (int i = 0; i < index; i++) {
                     newArray[i] = array[i];
                 }
                 newArray[index] = scanner.nextInt();
@@ -97,7 +97,7 @@ public class ArrayUtil {
     }
 
     public static void fifth(int[] array) {
-        if(array == null) {
+        if (array == null) {
             System.out.println("Массив не создан!!!");
         } else {
             System.out.println(Arrays.toString(array));
