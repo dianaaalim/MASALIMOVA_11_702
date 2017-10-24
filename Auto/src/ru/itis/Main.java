@@ -11,11 +11,10 @@ public class Main {
 	    automobile.setModel("BMW x5");
 	    automobile.setNumber("М213КС");
 	    automobile.setPower(400);
-	    automobile.go(n);
+	    automobile.setGo(n);
 		System.out.println(automobile.getColor());
 		System.out.println(automobile.getModel());
 		System.out.println(automobile.getNumber());
 		System.out.println(automobile.getPower());
-
 	}
 }

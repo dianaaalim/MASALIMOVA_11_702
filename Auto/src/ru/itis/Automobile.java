@@ -1,12 +1,12 @@
 package ru.itis;
 
 public class Automobile {
-    String model;
-    String color;
-    int power;
+    private String model;
+    private String color;
+    private int power;
     String number;
     int mileage = 0;
-          // n Надо ввести с клавиатуры(сканер)
+    // n Надо ввести с клавиатуры(сканер)
 
 
     public Automobile() {
@@ -14,7 +14,6 @@ public class Automobile {
         setModel(model);
         setColor(color);
         setNumber(number);
-
     }
 
     public void setModel(String model) {
@@ -44,21 +43,27 @@ public class Automobile {
     public void setPower(int power) {
         if (power >= 0) {
             this.power = power;
-        }
-        else {
+        } else {
             System.err.println("Некорректное значение мощности");
             System.err.println("Введено значение по умолчанию(0)");
             this.power = 0;
         }
 
     }
+
     public int getPower() {
         return power;
     }
 
-    void go(int n) {
-        mileage = mileage + n;
-        System.out.println("Пробег равен " + mileage + " километрам");
+    public void setGo(int n) {
+        if (n > 0) {
+            this.mileage = mileage + n;
+            System.out.println(String.format("Пробег равен %s километрам", mileage));
+        } else {
+            System.err.println("Пробег имеет неккоректное значение. Введено по умолчанию(0)");
+            this.mileage = 0;
+        }
     }
+
 
 }
