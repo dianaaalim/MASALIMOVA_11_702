@@ -6,14 +6,14 @@ import java.util.Arrays;
 public class ParkingPlace {
     private String place;
     private int count = 0;
-    private int maxCount = 5;
-    private Car[] carPlaces = new Car[maxCount];
+    private int maxCount = 3;
+    private Transport[] transportPlaces = new Transport[maxCount];
     private LocalTime beginTime;
     private LocalTime finishTime;
 
     public ParkingPlace(String place, LocalTime beginTime, LocalTime finishTime) {
         this.place = place;
-        this.carPlaces = new Car[maxCount];
+        this.transportPlaces = new Transport[maxCount];
         this.beginTime = beginTime;
         this.finishTime = finishTime;
     }
@@ -30,18 +30,19 @@ public class ParkingPlace {
         return place;
     }
 
-    public void addCarToParking(Car car) {
+    public void addCarToParking(Transport transport) {
         if (LocalTime.now().isBefore(finishTime) && LocalTime.now().isAfter(beginTime)) {
             int i = 0;
             if (count < maxCount) {
-                while (carPlaces[i] != null) {
+                while (transportPlaces[i] != null) {
                     i++;
                 }
-                carPlaces[i] = car;
+                transportPlaces[i] = transport;
                 count++;
-                System.out.print(car.getCarColor() + " " + car.getCarModel() + " с номерами: ");
-                System.out.print(car.getCarNumber() + " и мощностью = " + car.getCarPower());
-                System.out.println(" заехала на парковку номер " + getPlace());
+                System.out.print(transport.getTransportColor() + " " + transport.getTransportModel());
+//                System.out.print(car.getCarNumber() + " и мощностью = " + car.getCarPower());
+                System.out.print(" заехала на парковку " + getPlace());
+                System.out.println(" и потратила " + transport.spendFuel() + " литров за время пути");
             } else {
                 System.out.println("На парковке больше нет места");
             }
@@ -51,11 +52,11 @@ public class ParkingPlace {
 
     }
 
-    public void removeCarFromParking(Car car) {
+    public void removeCarFromParking(Transport transport) {
         if (LocalTime.now().isBefore(finishTime) && LocalTime.now().isAfter(beginTime)) {
             int pos = 0;
-            for (Car i : carPlaces) {
-                if(i != null && i.equals(car)) {             //equals сравнение объектов
+            for (Transport i : transportPlaces) {
+                if (i != null && i.equals(transport)) {             //equals сравнение объектов
                     break;
                 }
                 pos++;
@@ -63,11 +64,10 @@ public class ParkingPlace {
             if (pos >= maxCount) {
                 System.out.println("Данная машина не находиться на парковке");
             } else {
-                carPlaces[pos] = null;
+                transportPlaces[pos] = null;
                 count--;
-                System.out.print(car.getCarColor() + " " + car.getCarModel() + "с номерами: ");
-                System.out.print(car.getCarNumber() + " и мощностью = " + car.getCarPower());
-                System.out.println(" уехала с парковки под номером " + getPlace());
+                System.out.println(transport.getTransportColor() + " " + transport.getTransportModel() + " уехала с парковки " + getPlace());
+//                System.out.print(car.getCarNumber() + " и мощностью = " + car.getCarPower());
             }
         } else {
             System.out.println("Парковка не работает");
@@ -75,7 +75,7 @@ public class ParkingPlace {
     }
 
     public void printCarPlaces() {
-        System.out.println(Arrays.toString(carPlaces));
+        System.out.println(Arrays.toString(transportPlaces));
     }
 
     @Override
@@ -84,9 +84,11 @@ public class ParkingPlace {
                 "place='" + place + '\'' +
                 ", count=" + count +
                 ", maxCount=" + maxCount +
-                ", carPlaces=" + Arrays.toString(carPlaces) +
+                ", carPlaces=" + Arrays.toString(transportPlaces) +
                 ", beginTime=" + beginTime +
                 ", finishTime=" + finishTime +
                 '}';
+
     }
 }
+

@@ -7,11 +7,18 @@ public class Car {
     private int carPower;
     private ParkingPlace parking = null;
 
-    public Car(String carModel, String number, String color, int power){
-        setCarModel(carModel);
-        setCarNumber(number);
-        setCarColor(color);
-        setCarPower(power);
+    public Car(String carModel, String carColor, String carNumber, int carPower) {
+        this.carModel = carModel;
+        this.carColor = carColor;
+        this.carNumber = carNumber;
+        this.carPower = carPower;
+    }
+
+    public void toPark(ParkingPlace parkingPlace) {
+        parkingPlace.addCarToParking(this);
+    }
+    public void toTake(ParkingPlace parkingPlace) {
+        parkingPlace.removeCarFromParking(this);
     }
 
     public void setParking(ParkingPlace parking) {
