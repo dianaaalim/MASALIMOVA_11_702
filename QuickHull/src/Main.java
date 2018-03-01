@@ -1,27 +1,28 @@
-import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static final int DEFAULT_ARRAY_SIZE = 10;
     public static void main(String[] args) throws IOException {
-        Point[] points = new Point[DEFAULT_ARRAY_SIZE];
-        int size = 0;
-        FileInputStream fileInputStream = new FileInputStream("C:\\Users\\pc\\Desktop\\MASALIMOVA_11_702\\QuickHull\\src\\pointsList");
-        Scanner reader = new Scanner(fileInputStream);
-
-        while((reader.hasNext()) && (size < DEFAULT_ARRAY_SIZE)) {
-            String str = reader.nextLine();
-            points[size] = new Point();
-            points[size].x = str.charAt(0) - '0';
-            points[size].y = str.charAt(2) - '0';
-            size++;
+        ArrayList<Point> points = new ArrayList<>();
+        QuickHull hull = new QuickHull();
+        FileReader f = new FileReader("C:\\Users\\pc\\Desktop\\MASALIMOVA_11_702\\QuickHull\\src\\pointsList");
+        Scanner reader = new Scanner(f);
+        while(reader.hasNextLine()){
+            points.add(new Point(reader.nextInt(), reader.nextInt()));
         }
 
+        Point.print(points);
+        ArrayList<Point> quickHull = hull.quickHull(points);
+        Point.print(quickHull);
 
-        for(int i = 0; i < size; i++) {
-            points[i].toString();
-        }
+
+
+
+
+
+
     }
 
 }

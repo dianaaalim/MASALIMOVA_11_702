@@ -1,66 +1,52 @@
 package ru.itis;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class ShopService {
-    ArrayList<String> names = new ArrayList<>();
-    ArrayList<Integer> ides = new ArrayList<>();
-    ArrayList<String> surnames = new ArrayList<>();
-    ArrayList<String> fatherNames = new ArrayList<>();
-    ArrayList<Integer> ages = new ArrayList<>();
-    ArrayList<String> cities = new ArrayList<>();
-    ArrayList<Integer> repeatedIndexOfCity = new ArrayList<>();
 
-    ArrayList<Integer> idesOrders = new ArrayList<>();
-    ArrayList<Integer> idesOwner = new ArrayList<>();
-    ArrayList<String> nameOrders = new ArrayList<>();
-    ArrayList<Integer> weight = new ArrayList<>();
-    ArrayList<Integer> repeatedIndexOfWeigth = new ArrayList<>();
-
-    ArrayList<Integer> repeatedIndexOfIdesOwner = new ArrayList<>();
-
+    Orders orders = new Orders();
+    Owners owners = new Owners();
 
     public void searchCity(String needCity) {
-        for (int i = 0; i < this.cities.size(); i++) {
-            if (this.cities.get(i).equals(needCity)) {
-                repeatedIndexOfCity.add(i);
+        for (int i = 0; i < this.owners.cities.size(); i++) {
+            if (this.owners.cities.get(i).equals(needCity)) {
+                owners.repeatedIndexOfCity.add(i);
             }
         }
-        for (int i = 0; i < repeatedIndexOfCity.size(); i++) {
-            System.out.println(this.names.get(repeatedIndexOfCity.get(i)));
+        for (int i = 0; i < owners.repeatedIndexOfCity.size(); i++) {
+            System.out.println(this.owners.names.get(owners.repeatedIndexOfCity.get(i)));
         }
     }
 
     public void searchWeight(Integer needWeight) {
-        for (int i = 0; i < this.weight.size(); i++) {
-            if (this.weight.get(i).equals(needWeight)) {
-                repeatedIndexOfWeigth.add(i);
+        for (int i = 0; i < this.orders.weight.size(); i++) {
+            if (this.orders.weight.get(i).equals(needWeight)) {
+                orders.repeatedIndexOfWeigth.add(i);
             }
         }
-        for (int i = 0; i < repeatedIndexOfWeigth.size(); i++) {
-            System.out.println(this.nameOrders.get(repeatedIndexOfWeigth.get(i)));
+        for (int i = 0; i < orders.repeatedIndexOfWeigth.size(); i++) {
+            System.out.println(this.orders.nameOrders.get(orders.repeatedIndexOfWeigth.get(i)));
         }
     }
 
     public void searchHumanWithMaxCountOrder() {
-        int max[] = new int[ides.size()];
-        for (int i = 0; i < max.length; i++) {
-            max[i] = 0;
+        int allValues[] = new int[owners.ides.size()];
+        for (int i = 0; i < allValues.length; i++) {
+            allValues[i] = 0;
         }
-        for (int i = 0; i < this.ides.size(); i++) {
-            for (int j = 0; j < this.idesOrders.size(); j++) {
-                if (Objects.equals(ides.get(i), idesOwner.get(j))) max[i]++;
+        for (int i = 0; i < this.owners.ides.size(); i++) {
+            for (int j = 0; j < this.orders.idesOrders.size(); j++) {
+                if (Objects.equals(owners.ides.get(i), orders.idesOwner.get(j))) allValues[i]++;
             }
         }
-        int buf = 0;
-        for (int i = 0; i < max.length; i++) {
-            if (buf < max[i]) {
-                buf = max[i];
+        int max = 0;
+        for (int i = 0; i < allValues.length; i++) {
+            if (max < allValues[i]) {
+                max = allValues[i];
             }
         }
-        for (int i = 0; i < max.length; i ++){
-            if (max[i] == buf) System.out.println(names.get(i));
+        for (int i = 0; i < allValues.length; i ++){
+            if (allValues[i] == max) System.out.println(owners.names.get(i));
         }
     }
 }

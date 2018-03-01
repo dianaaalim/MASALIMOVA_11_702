@@ -10,7 +10,6 @@ public class Main {
         parkingPlace.addCarToParking(car1);
         TractorBeloruuus tractor1 = new TractorBeloruuus("Minsk", "black", 500, 10, 100);
         parkingPlace.addCarToParking(tractor1);
-        tractor1.amountPotatoes();
         Plane plane1 = new Plane("Ty98", "grey", 1000000, 250);
         parkingPlace.addCarToParking(plane1);
         Tank tank1 = new Tank("T34", "green", 70, 7);

@@ -1,10 +1,17 @@
-public class Point{
+import java.util.ArrayList;
+
+public class Point {
     public int x;
     public int y;
 
     public Point() {
         this.x = 0;
         this.y = 0;
+    }
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {
@@ -15,11 +22,6 @@ public class Point{
         return y;
     }
 
-    @Override
-    public String toString() {
-        System.out.print("(" + x + ";" + y + ") ");
-        return "";
-    }
 
     public boolean isAboveLine(Point left, Point right, Point newPoint) {
         int multiply;
@@ -32,5 +34,16 @@ public class Point{
             //выше прямой
             return true;
         }
+    }
+
+    public static void print (ArrayList<Point> list) {
+        Integer[] array = new Integer[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i).getX();
+            System.out.print("(" + array[i] + ";");
+            array[i] = list.get(i).getY();
+            System.out.print(array[i] + ")" + " ");
+        }
+
     }
 }

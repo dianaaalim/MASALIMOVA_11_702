@@ -4,9 +4,9 @@ import java.util.List;
 
 public class QuickHull {
 
-    public List<Point> quickHull(ArrayList<Point> points) {
+    public ArrayList<Point> quickHull(List<Point> points) {
 
-        List<Point> convexHull = new ArrayList<>();
+        ArrayList<Point> convexHull = new ArrayList<>();
         Point extremeLeft = points.get(0);
         Point extremeRight = points.get(0);
 
@@ -59,15 +59,12 @@ public class QuickHull {
     }
 
     //Нахождение самой дальней из точек
-
-
     private List<Point> sepsrstor(List<Point> points, Point maxLeft, Point maxRight) {
-        List<Point> hull = new ArrayList<>();
-
+        ArrayList<Point> hull = new ArrayList<>();
         List<Point> listA = new LinkedList<>();
         List<Point> listB = new LinkedList<>();
 
-// Если точек нет или одна
+        // Если точек нет или одна
         if (points == null) {
             return hull;
         } else if (points.size() == 1) {
@@ -81,19 +78,20 @@ public class QuickHull {
                 needPoint = point;
                 maxDistance = distance(maxLeft, maxRight, point);
             }
+        }
 
-            points.remove(needPoint);
+        points.remove(needPoint);
 
-            for (Point anotherPoint : points) {
-                if (anotherPoint.isAboveLine(maxLeft, needPoint, anotherPoint)) {
-                    listA.add(point);
-                } else {
-                    if (anotherPoint.isAboveLine(needPoint, maxRight, anotherPoint)) {
-                        listB.add(point);
-                    }
+        for (Point point : points) {
+            if (point.isAboveLine(maxLeft, needPoint, point)) {
+                listA.add(point);
+            } else {
+                if (point.isAboveLine(needPoint, maxRight, point)) {
+                    listB.add(point);
                 }
             }
         }
+
         points.clear();
 
         List<Point> PartOfHull = sepsrstor(listA, maxLeft, needPoint);
@@ -101,7 +99,6 @@ public class QuickHull {
         hull.add(needPoint);
         PartOfHull = sepsrstor(listB, needPoint, maxRight);
         hull.addAll(PartOfHull);
-
 
         return hull;
     }

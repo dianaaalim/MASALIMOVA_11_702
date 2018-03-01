@@ -2,3 +2,4 @@
 2 1 Mouse 200
 3 1 Keyboard 200
 4 3 MacBook_PRO 1500
+5 5 Smart_watches 175

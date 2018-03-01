@@ -1,7 +1,6 @@
 package ru.itis;
 
 import java.time.LocalTime;
-import java.util.Arrays;
 
 public class ParkingPlace {
     private String place;
@@ -18,14 +17,6 @@ public class ParkingPlace {
         this.finishTime = finishTime;
     }
 
-    public ParkingPlace(String place) {
-        setPlace(place);
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
     public String getPlace() {
         return place;
     }
@@ -40,9 +31,11 @@ public class ParkingPlace {
                 transportPlaces[i] = transport;
                 count++;
                 System.out.print(transport.getTransportColor() + " " + transport.getTransportModel());
-//                System.out.print(car.getCarNumber() + " и мощностью = " + car.getCarPower());
                 System.out.print(" заехала на парковку " + getPlace());
                 System.out.println(" и потратила " + transport.spendFuel() + " литров за время пути");
+                if (transport instanceof TractorBeloruuus){
+                    System.out.println("и там было " + ((TractorBeloruuus) transport).getAmountPotato() + " кг картошки");
+                }
             } else {
                 System.out.println("На парковке больше нет места");
             }
@@ -56,7 +49,7 @@ public class ParkingPlace {
         if (LocalTime.now().isBefore(finishTime) && LocalTime.now().isAfter(beginTime)) {
             int pos = 0;
             for (Transport i : transportPlaces) {
-                if (i != null && i.equals(transport)) {             //equals сравнение объектов
+                if (i != null && i.equals(transport)) {
                     break;
                 }
                 pos++;
@@ -67,28 +60,10 @@ public class ParkingPlace {
                 transportPlaces[pos] = null;
                 count--;
                 System.out.println(transport.getTransportColor() + " " + transport.getTransportModel() + " уехала с парковки " + getPlace());
-//                System.out.print(car.getCarNumber() + " и мощностью = " + car.getCarPower());
             }
         } else {
             System.out.println("Парковка не работает");
         }
-    }
-
-    public void printCarPlaces() {
-        System.out.println(Arrays.toString(transportPlaces));
-    }
-
-    @Override
-    public String toString() {
-        return "ParkingPlace{" +
-                "place='" + place + '\'' +
-                ", count=" + count +
-                ", maxCount=" + maxCount +
-                ", carPlaces=" + Arrays.toString(transportPlaces) +
-                ", beginTime=" + beginTime +
-                ", finishTime=" + finishTime +
-                '}';
-
     }
 }
 
