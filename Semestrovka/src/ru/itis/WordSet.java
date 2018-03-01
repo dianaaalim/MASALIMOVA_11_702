@@ -113,7 +113,7 @@ public class WordSet {
         try (FileWriter writer = new FileWriter(filename, false)) {
             Word current = head;
             while (current != null) {
-                String word = current.value.toString();
+                String word = current.value;
                 writer.write(word);
                 writer.append(' ');
                 current = current.next;
@@ -169,7 +169,7 @@ public class WordSet {
         WordSet result = new WordSet();
         Word current = head;
         while (current != null) {
-            String word = current.value.toString();
+            String word = current.value;
             if (word.length() == length) {
                 result.add(word);
             }
@@ -199,20 +199,23 @@ public class WordSet {
         return linksOfHead;
     }
 
+    //Проверяет палиндром или нет
+    private boolean isPalindrom(char[] charArray) {
+        for (int i = 0; i < charArray.length / 2; i++) {
+            if (charArray[i] != charArray[(charArray.length - 1) - i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //Удаление палиндрома
     public void removePalindrom() {
         Word current = this.head;
         Word previous = null;
-
         while (current != null) {
             char[] charArray = current.value.toCharArray();
-            char[] newCharArray = new char[charArray.length];
-            for (int i = 0; i < charArray.length; i++) {
-                newCharArray[(charArray.length - 1) - i] = charArray[i];
-            }
-            String a = new String(charArray);
-            String b = new String(newCharArray);
-            if (a.equals(b)) {
+            if (isPalindrom(charArray)) {
                 if (previous != null) {
                     previous.next = current.next;
                     if (current.next == null) {
