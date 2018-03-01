@@ -4,15 +4,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class WordSetTester {
-    private WordSet helper;
+    private WordSet wordSet;
 
     @Before
     public void setUp(){
-        helper = new WordSet();
+        wordSet = new WordSet();
     }
 
     @Test
-    public void testInsertAnotherWord() {
+    public void testInsertAnotherWord(WordSet wordSet) {
+        String[] expected = new String[wordSet.size()];
+
         
     }
     @Test
