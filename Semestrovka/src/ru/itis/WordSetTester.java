@@ -7,18 +7,20 @@ public class WordSetTester {
     private WordSet wordSet;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         wordSet = new WordSet();
     }
 
     @Test
-    public void testInsertAnotherWord(WordSet wordSet) {
-        String[] expected = new String[wordSet.size()];
-
+    public void testInsertAnotherWord() {
+        String[] expected = new String[]{"ab", "afvfa", "cft", "dab", "fer", "poz", "yod", "zxc"};
         
+
+
     }
+
     @Test
-    public void testInsertSameWord(){
+    public void testInsertSameWord() {
 
     }
 
