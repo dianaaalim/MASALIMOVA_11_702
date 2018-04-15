@@ -16,13 +16,15 @@ public class Main {
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
-                scanner.nextInt();
                 N++;
-            }
+                scanner.nextInt();
 
-            array = new int[N - 1];
+            }
+            N++;
+
+            array = new int[N];
             int i = 0;
-            while (scanner.hasNextLine()) {
+            while (scanner.hasNextLine() && i < array.length) {
                 array[i] = scanner.nextInt();
                 System.out.println(array[i]);
                 i++;

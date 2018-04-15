@@ -22,12 +22,13 @@ public class HashMap<K, V> {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Element element = (Element) o;
+        public boolean equals(Object object) {
+            if (this == object) return true;
+            if (object == null || getClass() != object.getClass()) return false;
+            Element element = (Element) object;
             return Objects.equals(key, element.key);
         }
+
 
         @Override
         public int hashCode() {
