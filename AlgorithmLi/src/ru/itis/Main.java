@@ -17,7 +17,6 @@ public class Main {
                         { 0, 0, 1, 0, 0, 1, 1, 0, 0, 1 },
                 };
 
-        // Find shortest path from source (0, 0) to
-        // destination (7, 5)
+
         Util.BFS(mat, 0, 0, 1, 5);    }
 }

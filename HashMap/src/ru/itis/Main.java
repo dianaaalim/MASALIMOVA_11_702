@@ -3,16 +3,14 @@ package ru.itis;
 public class Main {
 
     public static void main(String[] args) {
-        HashMap<String, Integer> map = new HashMap<>();
+        HashMapImpl<String, Integer> map = new HashMapImpl<>();
         map.put("Marsel", 24);
-        System.out.println(map.getValue("Marsel"));
+        System.out.println(map.get("Marsel"));
         map.put("Diana", 18);
-        System.out.println(map.getValue("Diana"));
+        System.out.println(map.get("Diana"));
         map.put("Maksim", 18);
-        System.out.println(map.getValue("Maksim"));
+        System.out.println(map.get("Maksim"));
         map.put("Maksim", 19);
-        System.out.println(map.getValue("Maksim"));
-        map.put("Irina", 17);
-        System.out.println(map.getValue("Irina"));
-        }
+        System.out.println(map.get("Maksim"));
+    }
 }
