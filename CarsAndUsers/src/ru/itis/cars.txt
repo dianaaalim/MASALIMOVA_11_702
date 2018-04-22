@@ -1,0 +1,7 @@
+3 Lada 1
+2 Porsh 2
+4 Mersedes 3
+1 Volvo 4
+7 BMW 5
+6 Kamaz 6
+5 Audi 7
