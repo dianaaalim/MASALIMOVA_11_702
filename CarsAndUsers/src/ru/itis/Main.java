@@ -1,55 +1,53 @@
 package ru.itis;
 
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        ArrayList<User> users = new ArrayList<>();
-        ArrayList<Car> cars = new ArrayList<>();
-
-
-
-
         try {
-            File inputUsers = new File("C:\\Users\\pc\\Desktop\\CarsAndUsers\\src\\ru\\itis\\users.txt");
-            Scanner scanner = new Scanner(inputUsers);
-            while (scanner.hasNext()) {
-                int id = scanner.nextInt();
-                String name = scanner.next();
-                int age = scanner.nextInt();
-                User user = new User(id, name, age);
-                users.add(user);
+            File userFile = new File("C:\\Users\\pc\\Desktop\\MASALIMOVA_11_702\\CarsAndUsers\\src\\ru\\itis\\users.txt");
+            File carFile = new File("C:\\Users\\pc\\Desktop\\MASALIMOVA_11_702\\CarsAndUsers\\src\\ru\\itis\\cars.txt");
+
+            BufferedReader userReader = new BufferedReader(new FileReader(userFile));
+            BufferedReader carReader = new BufferedReader(new FileReader(carFile));
+
+            String user = userReader.readLine();
+            String car = carReader.readLine();
+
+            HashMap<Integer, Integer> ages = new HashMap<>();
+
+            int userId = 0;
+            int age = 0;
+
+            while (user != null && car != null) {
+
+                userId = Integer.parseInt(user.split(" ")[0]);
+                int carOwnerId = Integer.parseInt(car.split(" ")[2]);
+
+                if (userId > carOwnerId) {
+                    car = carReader.readLine();
+                } else if (userId < carOwnerId) {
+                    user = userReader.readLine();
+                } else {
+                    age = Integer.parseInt(user.split(" ")[2]);
+                    if (ages.containsKey(age)) {
+                        ages.put(age, ages.get(age) + 1);
+                    } else {
+                        ages.put(age, 1);
+                    }
+
+                    car = carReader.readLine();
+                }
             }
-        } catch (FileNotFoundException e) {
+
+            for (Map.Entry entry : ages.entrySet()) {
+                System.out.println("Возраст: " + entry.getKey() + " Кол-во машин: " + entry.getValue());
+            }
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        try {
-            File inputUsers = new File("C:\\Users\\pc\\Desktop\\CarsAndUsers\\src\\ru\\itis\\cars.txt");
-            Scanner scanner = new Scanner(inputUsers);
-            while (scanner.hasNext()) {
-                int carID = scanner.nextInt();
-                String model = scanner.next();
-                int id = scanner.nextInt();
-                Car car = new Car(carID, model, id);
-                cars.add(car);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        for (int i = 0; i < users.size(); i++){
-            users.get(i).addCar(cars);
-        }
-
-
-
-
     }
 }

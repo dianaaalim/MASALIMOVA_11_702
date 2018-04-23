@@ -5,3 +5,6 @@
 7 BMW 5
 6 Kamaz 6
 5 Audi 7
+9 Ford 8
+10 Reno 9
+8 Ferrary 10
